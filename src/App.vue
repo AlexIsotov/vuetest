@@ -1,17 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="logo">
+      <button class='butt' v-on:click="clicker">Clicks: {{clicks}}</button>
+      <img v-if="clicks>10" alt="Vue logo" src="./assets/logo.png">
+    </div>
+    <AddItem title='Enter text' @add-task='addTask'/>
+    <ul>
+      <li v-for="(task, i) of tasks" >{{i+1}}.{{task}}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddItem from '@/components/addItem'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    AddItem
+  },
+  data(){
+    return {
+    clicks: 0,
+    tasks: []
+    }
+  },
+  methods: {
+    clicker: function(){
+      this.clicks += 1
+    },
+    addTask(task){
+      this.tasks.push(task)
+    }
   }
 }
 </script>
@@ -24,5 +44,24 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+ul {
+  list-style:none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 2rem;
+}
+.butt {
+  margin: 3px;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items:center;
 }
 </style>
