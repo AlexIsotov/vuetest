@@ -4,7 +4,7 @@
       <button class='butt' v-on:click="clicker">Clicks: {{clicks}}</button>
       <img v-if="clicks>10" alt="Vue logo" src="./assets/logo.png">
     </div>
-    <AddItem title='Enter text' @add-task='addTask'/>
+    <AddItem title='Enter text' @add-task='addTask' />
     <ul>
       <li v-for="(task, i) of tasks" >{{i+1}}.{{task}}</li>
     </ul>
@@ -30,7 +30,19 @@ export default {
       this.clicks += 1
     },
     addTask(task){
-      this.tasks.push(task)
+        if(!this.checkArr(this.tasks, task)){
+          this.tasks.push(task)
+          this.addAlert()
+        }
+        else {
+          alert('You already have this task!')
+        }
+    },
+    checkArr(arr,val) {
+      return arr.some(arrVal=> val===arrVal)
+    },
+    addAlert(){
+      alert('New Task!')
     }
   }
 }

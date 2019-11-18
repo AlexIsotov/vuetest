@@ -17,9 +17,11 @@ export default {
   },
   methods: {
     onClick(){
-      const task = this.message
-      this.$emit('add-task', task)
-      this.message =''
+      if(this.message.trim()){
+        const task = this.message
+        this.$emit('add-task', task)
+        this.message =''
+      }
     }
 
   }
