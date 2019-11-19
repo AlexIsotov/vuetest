@@ -2,7 +2,9 @@
   <div id="app">
     <div class="logo">
       <button class='butt' v-on:click="clicker">Clicks: {{clicks}}</button>
-      <img v-if="clicks>10" alt="Vue logo" src="./assets/logo.png">
+      <transition name="fade">
+        <img v-if="clicks>10" alt="Vue logo" src="./assets/logo.png">
+      </transition>
     </div>
     <AddItem title='Enter text' @add-task='addTask' />
     <ul>
@@ -75,5 +77,11 @@ li {
   display: flex;
   justify-content: center;
   align-items:center;
+}
+.fade-enter-active{
+  transition: opacity 1s;
+}
+.fade-enter {
+  opacity: 0;
 }
 </style>

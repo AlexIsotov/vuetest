@@ -1,5 +1,6 @@
 <template>
 <div>
+  <h1>Make your day better!</h1>
   <input type="text" :placeholder="title" v-model="message">
   <button @click='onClick'>Add task!</button>
 </div>
