@@ -3,28 +3,28 @@
     <div class="logo">
       <button class='butt' v-on:click="clicker">Clicks: {{clicks}}</button>
       <transition name="fade">
-        <img v-if="clicks>10" alt="Vue logo" src="./assets/logo.png">
+        <img v-if= "clicks>10" alt="Vue logo" src="./assets/logo.png">
       </transition>
     </div>
     <AddItem title='Enter text' @add-task='addTask' />
-    <ul>
-      <li v-for="(task, i) of tasks" >{{i+1}}.{{task}}</li>
-    </ul>
+    <ItemList :tasks="tasks" />
   </div>
 </template>
 
 <script>
 import AddItem from '@/components/addItem'
+import ItemList from '@/components/itemList'
 
 export default {
   name: 'app',
   components: {
-    AddItem
+    AddItem, ItemList
   },
   data(){
     return {
     clicks: 0,
-    tasks: []
+    tasks: ['Learn Vue','Learn React','Learn JS'],
+    addItem: false
     }
   },
   methods: {
@@ -34,7 +34,7 @@ export default {
     addTask(task){
         if(!this.checkArr(this.tasks, task)){
           this.tasks.push(task)
-          this.addAlert()
+          //this.addAlert()
         }
         else {
           alert('You already have this task!')
@@ -45,7 +45,7 @@ export default {
     },
     addAlert(){
       alert('New Task!')
-    }
+    },
   }
 }
 </script>
@@ -58,17 +58,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-ul {
-  list-style:none;
-  margin: 0;
-  padding: 0;
-}
-li {
-  border: 1px solid #ccc;
-  display: flex;
-  justify-content: space-between;
-  padding: .5rem 2rem;
 }
 .butt {
   margin: 3px;
