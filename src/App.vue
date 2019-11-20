@@ -7,7 +7,7 @@
       </transition>
     </div>
     <AddItem title='Enter text' @add-task='addTask' />
-    <ItemList :tasks="tasks" />
+    <ItemList :tasks="tasks" @del-item="delItem"/>
   </div>
 </template>
 
@@ -34,17 +34,16 @@ export default {
     addTask(task){
         if(!this.checkArr(this.tasks, task)){
           this.tasks.push(task)
-          //this.addAlert()
         }
         else {
           alert('You already have this task!')
         }
     },
+    delItem(task){
+        this.tasks = this.tasks.filter(t=>t !== task)
+    },
     checkArr(arr,val) {
       return arr.some(arrVal=> val===arrVal)
-    },
-    addAlert(){
-      alert('New Task!')
     },
   }
 }
