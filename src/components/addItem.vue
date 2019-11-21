@@ -21,7 +21,9 @@ export default {
   methods: {
     onClick(){
       if(this.message.trim()){
-        const task = this.message
+        let messageFilter = this.message.toString()
+        messageFilter = messageFilter.charAt(0).toUpperCase() + messageFilter.slice(1)
+        const task = messageFilter
         this.$emit('add-task', task)
         this.message =''
       }
