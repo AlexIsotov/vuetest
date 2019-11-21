@@ -29,24 +29,31 @@ export default {
 
 <style>
 .list-item {
+  background: gainsboro;
   border: 2px solid #ccc;
   display: flex;
   justify-content: space-between;
   padding: .5rem 2rem;
-  transition: all .3s;
+  transition: all .5s;
   margin-top: 5px;
+}
+.list-item:hover {
+  background: white;
 }
 .list-enter {
   opacity: 0;
-  transform: translateY(-100px);
+  transform: translateX(200px);
 }
 .list-leave-to{
   opacity: 0;
-  transform: translateY(70px);
+  transform: translateX(-200px);
 }
 .del-button {
+  color:#fff;
   border-radius: 50%;
   font-weight: bold;
+  background: crimson;
+  border: 0;
 }
 
 </style>

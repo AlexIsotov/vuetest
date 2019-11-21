@@ -1,8 +1,10 @@
 <template>
 <div>
   <h1>Make your day better!</h1>
-  <input type="text" :placeholder="title" v-model="message">
-  <button @click='onClick'>Add task!</button>
+  <div class="taskarea">
+    <textarea type="text" :placeholder="title" v-model="message" rows="8" cols="80" autofocus></textarea>
+    <button @click='onClick'>Add task!</button>
+  </div>
 </div>
 </template>
 
@@ -28,3 +30,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .taskarea {
+    display: flex;
+    justify-content: center;
+  }
+</style>
