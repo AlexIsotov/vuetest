@@ -1,18 +1,21 @@
 <template>
   <div>
     <transition-group name="list" tag="div">
-      <span v-for="(task, i) in tasks.slice().reverse()" v-bind:key="task" class="list-item">
-        {{task}}
-        <button @click="$emit('del-item', task)" class="del-button">&times;</button>
+      <span v-for="(task, id) in tasks.slice().reverse()" v-bind:key="id" class="list-item">
+        <Item :task="task.task" :id="task.id" :date="task.date" />
+        <button @click="$emit('del-item', task.task)" class="del-button">&times;</button>
       </span>
-
     </transition-group>
-
   </div>
 </template>
 
 <script>
+import Item from './item'
+
 export default {
+  components: {
+    Item
+  },
   props: {
     tasks: Array
   },
@@ -34,7 +37,7 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: .5rem 2rem;
-  transition: all .5s;
+  transition: all .3s;
   margin-top: 5px;
 }
 .list-item:hover {
@@ -42,11 +45,11 @@ export default {
 }
 .list-enter {
   opacity: 0;
-  transform: translateX(200px);
+  transform: translateY(200px);
 }
 .list-leave-to{
   opacity: 0;
-  transform: translateX(-200px);
+  transform: translateY(-200px);
 }
 .del-button {
   color:#fff;
@@ -55,5 +58,4 @@ export default {
   background: crimson;
   border: 0;
 }
-
 </style>

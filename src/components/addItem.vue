@@ -23,7 +23,7 @@ export default {
       if(this.message.trim()){
         let messageFilter = this.message.toString()
         messageFilter = messageFilter.charAt(0).toUpperCase() + messageFilter.slice(1)
-        const task = messageFilter
+        const task = {id:'1', task:messageFilter, date: Date.now().toLocaleString(), dateTo:'1', done: false} 
         this.$emit('add-task', task)
         this.message =''
       }

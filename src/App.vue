@@ -23,7 +23,10 @@ export default {
   data(){
     return {
     clicks: 0,
-    tasks: ['Learn Vue','Learn React','Learn JS'],
+    tasks: [{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false},
+            { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:false},
+            { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false}
+           ],
     addItem: false
     }
   },
@@ -32,7 +35,7 @@ export default {
       this.clicks += 1
     },
     addTask(task){
-        if(!this.checkArr(this.tasks, task)){
+        if(!this.checkArr(this.tasks, task.task)){
           this.tasks.push(task)
         }
         else {
@@ -40,10 +43,10 @@ export default {
         }
     },
     delItem(task){
-        this.tasks = this.tasks.filter(t=>t !== task)
+        this.tasks = this.tasks.filter(t=>t.task !== task)
     },
     checkArr(arr,val) {
-      return arr.some(arrVal=> val===arrVal)
+      return arr.some(arrVal=> val===arrVal.task)
     },
   }
 }
