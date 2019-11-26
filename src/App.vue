@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <div class="logo">
-      <button class='butt' v-on:click="clicker">Clicks: {{clicks}}</button>
-      <transition name="fade">
-        <img v-if= "clicks>10" alt="Vue logo" src="./assets/logo.png">
-      </transition>
+        <img alt="Vue logo" src="./assets/logo.png">
     </div>
     <AddItem title='Enter text' @add-task='addTask' />
     <ItemList :tasks="tasks" @del-item="delItem"/>
@@ -22,7 +19,6 @@ export default {
   },
   data(){
     return {
-    clicks: 0,
     tasks: [{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false},
             { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:false},
             { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false}
@@ -31,9 +27,6 @@ export default {
     }
   },
   methods: {
-    clicker: function(){
-      this.clicks += 1
-    },
     addTask(task){
         if(!this.checkArr(this.tasks, task.task)){
           this.tasks.unshift(task)
@@ -61,16 +54,13 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.butt {
-  margin: 3px;
-}
 .logo {
   display: flex;
   justify-content: center;
   align-items:center;
 }
 .fade-enter-active{
-  transition: opacity 1s;
+  transition: opacity .5s;
 }
 .fade-enter {
   opacity: 0;

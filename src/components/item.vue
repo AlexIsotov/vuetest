@@ -1,8 +1,10 @@
 <template>
-<div class="task-container">
-  <div class="task">
-    <p>{{task}}</p>
-    <p>{{date}}</p>
+<div @click="showMore" class="task-container">
+  <div  class="task-item">
+    <p><strong>{{task}}</strong></p>
+    <transition name="fade">
+      <p v-if="show">{{date}}</p>
+    </transition>
   </div>
   <div class="btn-container">
     <button @click="$emit('del-item', id)" class="del-button">&times;</button>
@@ -23,7 +25,9 @@ export default {
       }
   },
   methods: {
-
+    showMore() {
+      this.show=!this.show
+    }
   }
 }
 </script>
@@ -32,13 +36,12 @@ export default {
 .task-container {
   display: flex;
   justify-content: space-between;
+  cursor:pointer;
 }
-.task {
-
+.task-item {
 
 }
 .btn-container {
-
 
 }
 
