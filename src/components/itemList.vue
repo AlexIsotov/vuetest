@@ -1,10 +1,9 @@
 <template>
   <div>
     <transition-group name="list" tag="div">
-      <span v-for="(task, id) in tasks.slice().reverse()" v-bind:key="id" class="list-item">
-        <Item :task="task.task" :id="task.id" :date="task.date" />
-        <button @click="$emit('del-item', task.task)" class="del-button">&times;</button>
-      </span>
+      <div v-for="(task, id) in tasks" v-bind:key="task.id" class="list-item">
+        <Item :task="task.task" :id="task.id" :date="task.date" @del-item="delItem"/>
+      </div>
     </transition-group>
   </div>
 </template>
@@ -25,7 +24,9 @@ export default {
       }
   },
   methods: {
-
+    delItem(id) {
+      this.$emit('del-item', id)
+    }
   }
 }
 </script>
@@ -33,9 +34,9 @@ export default {
 <style>
 .list-item {
   background: gainsboro;
+  
   border: 2px solid #ccc;
-  display: flex;
-  justify-content: space-between;
+
   padding: .5rem 2rem;
   transition: all .3s;
   margin-top: 5px;

@@ -36,14 +36,14 @@ export default {
     },
     addTask(task){
         if(!this.checkArr(this.tasks, task.task)){
-          this.tasks.push(task)
+          this.tasks.unshift(task)
         }
         else {
           alert('You already have this task!')
         }
     },
-    delItem(task){
-        this.tasks = this.tasks.filter(t=>t.task !== task)
+    delItem(id){
+        this.tasks = this.tasks.filter(t=>t.id !== id)
     },
     checkArr(arr,val) {
       return arr.some(arrVal=> val===arrVal.task)
