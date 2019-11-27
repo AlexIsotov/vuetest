@@ -2,7 +2,7 @@
   <div>
     <transition-group name="list" tag="div">
       <div v-for="(task, id) in tasks" v-bind:key="task.id" class="list-item">
-        <Item :task="task.task" :id="task.id" :date="task.date" @del-item="delItem"/>
+        <Item :task="task.task" :id="task.id" :date="task.date" :dateTo="task.dateTo" :done="task.done" @del-item="delItem"/>
       </div>
     </transition-group>
   </div>
@@ -34,7 +34,7 @@ export default {
 <style>
 .list-item {
   background: gainsboro;
-  
+
   border: 2px solid #ccc;
 
   padding: .5rem 2rem;

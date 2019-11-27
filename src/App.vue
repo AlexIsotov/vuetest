@@ -20,7 +20,7 @@ export default {
   data(){
     return {
     tasks: [{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false},
-            { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:false},
+            { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:true},
             { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false}
            ],
     addItem: false

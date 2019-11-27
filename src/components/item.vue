@@ -1,9 +1,15 @@
 <template>
-<div @click="showMore" class="task-container">
-  <div  class="task-item">
-    <p><strong>{{task}}</strong></p>
+<div class="task-container">
+  <div>
+    <div class="task-item">
+      <input v-bind:id="id" type="checkbox" v-bind:checked="done" />
+      <label for="id" class="show-info" @click="showMore"><strong>{{task}}</strong></label>
+    </div>
     <transition name="fade">
-      <p v-if="show">{{date}}</p>
+      <div v-if="show">
+      <p>Date:{{date}}</p>
+      <p>Until:{{dateTo}}</p>
+      </div>
     </transition>
   </div>
   <div class="btn-container">
@@ -17,7 +23,9 @@ export default {
   props: {
     task: String,
     id: String,
-    date: String
+    date: String,
+    dateTo: String,
+    done: Boolean
   },
   data(){
     return{
@@ -36,13 +44,14 @@ export default {
 .task-container {
   display: flex;
   justify-content: space-between;
-  cursor:pointer;
 }
 .task-item {
-
+  display:flex;
+}
+.show-info {
+  cursor:pointer;
 }
 .btn-container {
 
 }
-
 </style>
