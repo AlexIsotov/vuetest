@@ -1,6 +1,7 @@
 <template>
 <div>
   <h1>Make your day better!</h1>
+  <h3>If you don't want to forget the task write it here!</h3>
   <div class="taskarea">
     <textarea type="text" :placeholder="title" v-model="message" rows="8" cols="80" autofocus></textarea>
     <div class="taskarea-shrink">
