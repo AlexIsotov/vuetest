@@ -4,7 +4,7 @@
         <img alt="Vue logo" src="./assets/logo.png">
     </div>
     <AddItem title='Enter text' @add-task='addTask' />
-    <ItemList :tasks="tasks" @del-item="delItem"/>
+    <ItemList :tasks="tasks" @del-item="delItem" @complete-item="completeItem"/>
   </div>
 </template>
 
@@ -38,6 +38,19 @@ export default {
     delItem(id){
         this.tasks = this.tasks.filter(t=>t.id !== id)
     },
+    completeItem(idItem) {
+      for(let i=0;i<this.tasks.length;i++) {
+        if(this.tasks[i].id.toString()==idItem) {
+          if(this.tasks[i].done!==true) {
+          //let accept = confirm("Do you agree to close this task?")
+          //  if(accept) {
+              this.tasks[i].done = true
+          //  }
+          }
+          else {this.tasks[i].done = false}
+        }
+      }
+    },
     checkArr(arr,val) {
       return arr.some(arrVal=> val===arrVal.task)
     },
@@ -59,10 +72,10 @@ export default {
   justify-content: center;
   align-items:center;
 }
-.fade-enter-active{
+.fade-enter-active, .fade-leave-active{
   transition: opacity .5s;
 }
-.fade-enter {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 </style>

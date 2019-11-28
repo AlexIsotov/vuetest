@@ -1,9 +1,12 @@
 <template>
-<div class="task-container">
+<div @mouseover="showButton=true" @mouseleave="showButton=false" class="task-container">
   <div>
     <div class="task-item">
-      <input v-bind:id="id" type="checkbox" v-bind:checked="done" />
-      <label for="id" class="show-info" @click="showMore"><strong>{{task}}</strong></label>
+      <input v-bind:id="id" type="checkbox" v-bind:checked="done" @change="$emit('complete-task')" />
+      <label v-bind:for="id" class="show-info"><strong>{{task}}</strong></label>
+      <transition name="slide-fade">
+        <button v-if="showButton" @click="showMore">?</button>
+      </transition>
     </div>
     <transition name="fade">
       <div v-if="show">
@@ -29,7 +32,9 @@ export default {
   },
   data(){
     return{
-      show: false
+      showButton:false,
+      show: false,
+      complete: false
       }
   },
   methods: {
@@ -53,5 +58,14 @@ export default {
 }
 .btn-container {
 
+}
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(100px);
 }
 </style>

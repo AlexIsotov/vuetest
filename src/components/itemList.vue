@@ -2,7 +2,14 @@
   <div>
     <transition-group name="list" tag="div">
       <div v-for="(task, id) in tasks" v-bind:key="task.id" class="list-item">
-        <Item :task="task.task" :id="task.id" :date="task.date" :dateTo="task.dateTo" :done="task.done" @del-item="delItem"/>
+        <Item
+        :task="task.task"
+        :id="task.id"
+        :date="task.date"
+        :dateTo="task.dateTo"
+        :done="task.done"
+        @del-item="$emit('del-item', task.id)"
+        @complete-task="$emit('complete-item', task.id)"/>
       </div>
     </transition-group>
   </div>
@@ -24,9 +31,7 @@ export default {
       }
   },
   methods: {
-    delItem(id) {
-      this.$emit('del-item', id)
-    }
+
   }
 }
 </script>
@@ -34,11 +39,9 @@ export default {
 <style>
 .list-item {
   background: gainsboro;
-
   border: 2px solid #ccc;
-
   padding: .5rem 2rem;
-  transition: all .3s;
+  transition: all .5s;
   margin-top: 5px;
 }
 .list-item:hover {
