@@ -1,8 +1,8 @@
 <template>
-<div @mouseover="showButton=true" @mouseleave="showButton=false" class="task-container">
+<div @mouseleave="showButton=false" class="task-container">
   <div>
     <div class="task-item">
-      <div>
+      <div @mouseover="showButton=true">
         <input v-bind:id="id" type="checkbox" v-bind:checked="done" @change="completeTask" />
         <label v-bind:for="id" class="show-info"><strong v-bind:class="{donetask:done}">{{task}}</strong></label>
       </div>
@@ -48,6 +48,7 @@ export default {
     completeTask(){
       this.line = "line-through"
       this.$emit('complete-task')
+      if(this.done!==true) {this.show=false}
     }
   }
 }
@@ -60,7 +61,7 @@ export default {
 }
 .task-item, .info {
   display:flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 .show-info {
   cursor:pointer;

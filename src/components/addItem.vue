@@ -3,10 +3,10 @@
   <h1>Make your day better!</h1>
   <h3>If you don't want to forget the task write it here</h3>
   <div class="taskarea">
-    <textarea type="text" :placeholder="title" v-model="message" rows="8" cols="80" autofocus></textarea>
+    <textarea type="text" :placeholder="title" v-model="message" rows="8" cols="80" class="text-area" autofocus></textarea>
     <div class="taskarea-shrink">
       <input type="date" v-model="date" v-bind:min="minDate" />
-      <button @click='onClick'>Add task!</button>
+      <button @click='onClick' class="add-btn">Add task!</button>
     </div>
   </div>
 </div>
@@ -52,5 +52,21 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     margin-left: 5px;
+  }
+  .text-area {
+    border-radius: 10px;
+    resize:none;
+  }
+  .add-btn {
+    border: solid 1px transparent;
+    border-radius: 4px;
+    color:#fffbe8;
+    padding: 0.5em 1em;
+    background: #a397aa;
+  }
+  .add-btn:hover, .add-btn:focus {
+    color: #fff;
+    border-color: currentColor;
+    background: #cec2d5;
   }
 </style>

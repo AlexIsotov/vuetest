@@ -38,9 +38,10 @@ export default {
 
 <style>
 .list-item {
-  background: gainsboro;
+  background: #ffffe0;
   border: 2px solid #ccc;
-  padding: .5rem 2rem;
+  border-radius: 5px;
+  padding: .8rem 2rem;
   transition: all .5s;
   margin-top: 5px;
 }
@@ -60,6 +61,11 @@ export default {
   border-radius: 50%;
   font-weight: bold;
   background: crimson;
-  border: 0;
+  border: solid 1px transparent;
+}
+.del-button:hover, .del-button:focus {
+  color: crimson;
+  border-color: currentColor;
+  background: white;
 }
 </style>
