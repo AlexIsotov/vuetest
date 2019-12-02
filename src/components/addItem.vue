@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Make your day better!</h1>
+  <h1 class="main-text">Make your day better!</h1>
   <h3>If you don't want to forget the task write it here</h3>
   <div class="taskarea">
     <textarea type="text" :placeholder="title" v-model="message" rows="8" cols="80" class="text-area" autofocus></textarea>
@@ -42,6 +42,9 @@ export default {
 </script>
 
 <style>
+  .main-text {
+    animation: texted 1s infinite ease alternate;
+  }
   .taskarea {
     display: flex;
     flex-direction: row;
@@ -68,12 +71,16 @@ export default {
     color: #fff;
     outline: none;
     border-color: currentColor;
-    background: linear-gradient(45deg, #cec2d5 25%, #696969 25%);
-    background-size: 10px 10px;
-    animation: stripes .8s infinite ease alternate;
+    background: linear-gradient(120deg, #cec2d5, #696969);
+    animation: stripes .5s linear reverse ;
   }
   @keyframes stripes {
-    0% {background-position: 0 0;}
-    100% {background-position: 50px 0;}
+    0% {background-position: 120px 0;}
+    100% {background-position: 0 0;}
+  }
+  @keyframes texted {
+    0% {margin-left: 2rem;}
+    100% {margin-left: -2rem;}
+
   }
 </style>
