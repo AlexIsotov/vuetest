@@ -58,14 +58,17 @@ export default {
 }
 .del-button {
   color:#fff;
+  outline:none;
   border-radius: 50%;
   font-weight: bold;
   background: crimson;
   border: solid 1px transparent;
+  transition: 1s;
 }
 .del-button:hover, .del-button:focus {
   color: crimson;
   border-color: currentColor;
   background: white;
+  transform: rotate(360deg);
 }
 </style>

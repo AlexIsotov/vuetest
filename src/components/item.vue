@@ -67,11 +67,19 @@ export default {
   cursor:pointer;
 }
 .btn-show {
-  border:0;
+  border: solid 1px transparent;
+  outline:none;
   border-radius: 50%;
   background: dodgerblue;
   margin-left:10px;
   color: white;
+  transition: .5s;
+}
+.btn-show:hover {
+  color: dodgerblue;
+  border-color: currentColor;
+  background: white;
+  transform: rotate(360deg);
 }
 .btn-container {
 

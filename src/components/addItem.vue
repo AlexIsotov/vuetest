@@ -64,9 +64,16 @@ export default {
     padding: 0.5em 1em;
     background: #a397aa;
   }
-  .add-btn:hover, .add-btn:focus {
+  .add-btn:hover{
     color: #fff;
+    outline: none;
     border-color: currentColor;
-    background: #cec2d5;
+    background: linear-gradient(45deg, #cec2d5 25%, #696969 25%);
+    background-size: 10px 10px;
+    animation: stripes .8s infinite ease alternate;
+  }
+  @keyframes stripes {
+    0% {background-position: 0 0;}
+    100% {background-position: 50px 0;}
   }
 </style>
