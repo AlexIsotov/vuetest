@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="logo">
-        <img alt="Vue logo" src="./assets/logo.png">
+        <img alt="Vue logo" src="./assets/logo.png" class="main-img">
     </div>
     <AddItem title='Create new task and pick a date' @add-task='addTask' />
     <ItemList :tasks="tasks" @del-item="delItem" @complete-item="completeItem"/>
@@ -19,9 +19,9 @@ export default {
   },
   data(){
     return {
-    tasks: [{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false},
-            { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:true},
-            { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false}
+    tasks: [{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false, comment:''},
+            { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:true, comment:''},
+            { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false, comment:'No comments'}
            ],
     addItem: false
     }
@@ -75,10 +75,16 @@ html {
   justify-content: center;
   align-items:center;
 }
+.main-img {
+  transition: .5s;
+}
 .fade-enter-active, .fade-leave-active{
   transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+.main-img:hover {
+  transform: rotate(180deg) scale(0.5, 0.5);
 }
 </style>

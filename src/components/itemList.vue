@@ -8,6 +8,7 @@
         :date="task.date"
         :dateTo="task.dateTo"
         :done="task.done"
+        :comment="task.comment"
         @del-item="$emit('del-item', task.id)"
         @complete-task="$emit('complete-item', task.id)"/>
       </div>

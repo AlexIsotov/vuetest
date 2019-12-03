@@ -13,8 +13,13 @@
     <div class="info">
       <transition name="fade">
         <div v-if="show">
-        <p>Date:{{date}}</p>
-        <p>Until:{{dateTo}}</p>
+          <div class="date">
+            <p>Date:{{date}}</p>
+            <p>Until:{{dateTo}}</p>
+          </div>
+          <div>
+            <p>Comment: {{comment}}</p>
+          </div>
         </div>
       </transition>
     </div>
@@ -32,7 +37,8 @@ export default {
     id: String,
     date: String,
     dateTo: String,
-    done: Boolean
+    done: Boolean,
+    comment: String
   },
   data(){
     return{
@@ -61,10 +67,14 @@ export default {
 }
 .task-item, .info {
   display:flex;
-  justify-content: flex-start;
+  /*justify-content: flex-start;*/
 }
 .show-info {
   cursor:pointer;
+}
+.date {
+  display: flex;
+  justify-content: space-around;
 }
 .btn-show {
   border: solid 1px transparent;
