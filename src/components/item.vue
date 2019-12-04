@@ -1,32 +1,30 @@
 <template>
-<div @mouseleave="showButton=false" class="task-container">
-  <div>
-    <div class="task-item">
-      <div @mouseover="showButton=true">
+  <div @mouseleave="showButton=false" @mouseover="showButton=true" id="taskContainer">
+      <div class="check">
         <input v-bind:id="id" type="checkbox" v-bind:checked="done" @change="completeTask" />
-        <label v-bind:for="id" class="show-info"><strong v-bind:class="{donetask:done}">{{task}}</strong></label>
       </div>
-      <transition name="slide-fade">
-        <button v-if="showButton" @click="showMore" class="btn-show">?</button>
-      </transition>
-    </div>
-    <div class="info">
-      <transition name="fade">
-        <div v-if="show">
-          <div class="date">
-            <p>Date:{{date}}</p>
-            <p>Until:{{dateTo}}</p>
+      <div class="task">
+        <label v-bind:for="id" ><strong v-bind:class="{donetask:done}">{{task}}</strong></label>
+        <transition name="slide-fade">
+            <button v-if="showButton" @click="showMore" class="btn-show">?</button>
+        </transition>
+      </div>
+      <div class="delBtn">
+        <button @click="$emit('del-item', id)" class="del-button">&times;</button>
+      </div>
+
+        <transition name="fade" >
+          <div v-if="show" id="more">
+            <div class="date">
+              <p>Date:{{date}}</p>
+              <p>Until:{{dateTo}}</p>
+            </div>
+            <div class="comment">
+              <p>Comment: {{comment}}</p>
+            </div>
           </div>
-          <div>
-            <p>Comment: {{comment}}</p>
-          </div>
-        </div>
-      </transition>
-    </div>
-  </div>
-  <div class="btn-container">
-    <button @click="$emit('del-item', id)" class="del-button">&times;</button>
-  </div>
+        </transition>
+
 </div>
 </template>
 
@@ -61,20 +59,44 @@ export default {
 </script>
 
 <style>
-.task-container {
-  display: flex;
-  justify-content: space-between;
+#taskContainer {
+  display: grid;
+  grid-template-areas:
+  "check task del-btn"
+  "more more more";
+  grid-template-rows: 10% 1fr;
+  grid-template-columns: 5% 1fr  5%;
+  grid-gap: 5px;
 }
-.task-item, .info {
-  display:flex;
-  /*justify-content: flex-start;*/
+.check {
+  grid-area:check;
 }
-.show-info {
-  cursor:pointer;
+.task, .done-task {
+    grid-area:task;
+    justify-self: start;
+}
+.delBtn {
+  grid-area:del-btn;
+}
+#more {
+  grid-area:more;
+  display:grid;
+  grid-template-areas:
+  "date"
+  "comment";
+  grid-template-rows: 1fr 2fr;
+  grid-template-columns: 1fr;
+  grid-gap: 1px;
 }
 .date {
-  display: flex;
-  justify-content: space-around;
+  grid-area: date;
+  justify-self: end;
+  margin-right:2px;
+}
+.comment {
+  grid-area: comment;
+  justify-self: start;
+  margin: 2px;
 }
 .btn-show {
   border: solid 1px transparent;
@@ -91,9 +113,6 @@ export default {
   background: white;
   transform: rotate(360deg);
 }
-.btn-container {
-
-}
 .slide-fade-enter-active {
   transition: all .2s ease;
 }
@@ -101,7 +120,7 @@ export default {
   transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to {
-  transform: translateX(100px);
+  transform: translateX(5px);
 }
 .donetask {
   text-decoration: line-through;

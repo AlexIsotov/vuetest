@@ -3,7 +3,7 @@
     <div class="logo">
         <img alt="Vue logo" src="./assets/logo.png" class="main-img">
     </div>
-    <AddItem title='Create new task and pick a date' @add-task='addTask' />
+    <AddItem title='Create comment and don`t forget to choose date!' @add-task='addTask' />
     <ItemList :tasks="tasks" @del-item="delItem" @complete-item="completeItem"/>
   </div>
 </template>

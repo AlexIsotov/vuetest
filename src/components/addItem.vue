@@ -4,11 +4,12 @@
   <h3>If you don't want to forget the task write it here</h3>
   <div class="taskarea">
     <div class="taskarea-main">
-      <input type="text" v-model="message" class="text-input" autofocus/>
+      <input type="text" v-model="message" placeholder="Enter your planned task" class="text-input" autofocus/>
       <textarea type="text" :placeholder="title" v-model="comment" rows="8" cols="80" class="text-area" ></textarea>
     </div>
     <div class="taskarea-shrink">
-      <input type="date" v-model="date" v-bind:min="minDate" />
+      <label for:id="datePicker" class="dateLabel">Date to:</label>
+      <input type="date" v-model="date" v-bind:min="minDate" id="datePicker"/>
       <button @click='onClick' class="add-btn">Add task!</button>
     </div>
   </div>
@@ -59,7 +60,6 @@ export default {
   .taskarea-shrink {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     margin-left: 5px;
   }
   .taskarea-main {
@@ -75,6 +75,10 @@ export default {
     border: solid 1px rgb(169, 169, 169);
     border-radius: 4px;
     margin:2px;
+  }
+  .dateLabel {
+    font-size: 10px;
+    align-self:start;
   }
   .add-btn {
     border: solid 1px transparent;
