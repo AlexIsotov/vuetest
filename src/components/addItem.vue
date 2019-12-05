@@ -5,10 +5,9 @@
   <div class="taskarea">
     <div class="taskarea-main">
       <input type="text" v-model="message" placeholder="Enter your planned task" class="text-input" autofocus/>
-      <textarea type="text" :placeholder="title" v-model="comment" rows="8" cols="80" class="text-area" ></textarea>
+      <textarea type="text" :placeholder="title" v-model="comment" rows="8" class="text-area" ></textarea>
     </div>
     <div class="taskarea-shrink">
-      <label for:id="datePicker" class="dateLabel">Date to:</label>
       <input type="date" v-model="date" v-bind:min="minDate" id="datePicker"/>
       <button @click='onClick' class="add-btn">Add task!</button>
     </div>
@@ -50,35 +49,48 @@ export default {
 <style>
   .main-text {
     position: relative;
-    animation: texted 1s infinite ease alternate;
+    animation: texted 2s infinite ease alternate;
   }
   .taskarea {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-areas:
+    "taskArea dateArea";
+    grid-template-columns: 1fr  25%;
+    grid-gap: 5px;
   }
   .taskarea-shrink {
-    display: flex;
-    flex-direction: column;
-    margin-left: 5px;
+    grid-area: dateArea;
+    display: grid;
+    grid-template-columns: [controls] 1fr;
+    grid-auto-flow:row;
+    grid-gap: 2px;
   }
   .taskarea-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    grid-area: taskArea;
+    display:grid;
+    grid-template-rows: 25% 1fr;
+    grid-template-areas:
+    "task"
+    "comment";
+    grid-gap:2px;
     }
   .text-area {
     border-radius: 10px;
     resize:none;
+    grid-area: comment;
   }
   .text-input{
     border: solid 1px rgb(169, 169, 169);
     border-radius: 4px;
-    margin:2px;
+    grid-area: task;
   }
-  .dateLabel {
-    font-size: 10px;
-    align-self:start;
+  #datePicker {
+    grid-column: controls;
+    grid-row:auto;
+    font-size: large;
+    text-align: center;
+    border: solid 1px rgb(169, 169, 169);
+    border-radius: 4px;
   }
   .add-btn {
     border: solid 1px transparent;
@@ -86,17 +98,18 @@ export default {
     color:#fffbe8;
     padding: 0.5em 1em;
     background: #a397aa;
+    grid-column: span 2;
   }
   .add-btn:hover{
     color: #fff;
     outline: none;
     border-color: currentColor;
-    background: linear-gradient(120deg, #cec2d5, #696969);
-    animation: stripes .5s linear reverse ;
+    background: linear-gradient(45deg, #cec2d5, #696969);
+    animation: stripes .3s infinite linear alternate ;
   }
   @keyframes stripes {
-    0% {background-position: 120px 0;}
-    100% {background-position: 0 0;}
+    0% {transform: skewX(2deg) skewY(-1deg);}
+    100% {transform: skewX(-2deg) skewY(1deg);}
   }
   @keyframes texted {
     0% {left: 5px;}
