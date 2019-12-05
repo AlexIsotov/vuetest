@@ -1,7 +1,11 @@
 <template>
   <div @mouseleave="showButton=false" @mouseover="showButton=true" id="taskContainer">
+    <div class="taskItem">
       <div class="check">
-        <input v-bind:id="id" type="checkbox" v-bind:checked="done" @change="completeTask" />
+        <label class="container">
+          <input v-bind:id="id" type="checkbox" v-bind:checked="done" @change="completeTask" />
+          <span class="checkmark"></span>
+        </label>
       </div>
       <div class="task">
         <label v-bind:for="id" ><strong v-bind:class="{donetask:done}">{{task}}</strong></label>
@@ -12,20 +16,19 @@
       <div class="delBtn">
         <button @click="$emit('del-item', id)" class="del-button">&times;</button>
       </div>
-
-        <transition name="fade" >
-          <div v-if="show" id="more">
-            <div class="date">
-              <p>Date:{{date}}</p>
-              <p>Until:{{dateTo}}</p>
-            </div>
-            <div class="comment">
-              <p>Comment: {{comment}}</p>
-            </div>
-          </div>
-        </transition>
-
-</div>
+    </div>
+    <transition name="fade" >
+      <div v-if="show" id="more">
+        <div class="date">
+          <p>Date:{{date}}</p>
+          <p>Until:{{dateTo}}</p>
+        </div>
+        <div class="comment">
+          <p>Comment: {{comment}}</p>
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -62,21 +65,77 @@ export default {
 #taskContainer {
   display: grid;
   grid-template-areas:
-  "check task del-btn"
-  "more more more";
-  grid-template-rows: 10% 1fr;
-  grid-template-columns: 5% 1fr  5%;
+  "taskItem"
+  "more";
+  grid-template-rows: 15% 1fr;
+  grid-gap: 5px;
+}
+.taskItem {
+  grid-area: taskItem;
+  display: grid;
+  grid-template-areas:
+  "check task del-btn";
+  grid-template-columns: 15% 1fr 15%;
   grid-gap: 5px;
 }
 .check {
   grid-area:check;
+
 }
+/*custom checkbox*/
+.container {
+  display: block;
+  position:relative;
+  cursor:pointer;
+  user-select:none;
+}
+.container input{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height:0;
+  width:0;
+}
+.checkmark {
+  position: absolute;
+  top:0;
+  left:0;
+  height: 25px;
+  width: 25px;
+  background-color: #ccc;
+}
+.container:hover input ~ .checkmark {
+  background-color: #eee8aa;
+}
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+/*-------*/
 .task, .done-task {
     grid-area:task;
     justify-self: start;
+    font-size: large;
 }
 .delBtn {
   grid-area:del-btn;
+  align-self:center;
 }
 #more {
   grid-area:more;
@@ -103,7 +162,7 @@ export default {
   outline:none;
   border-radius: 50%;
   background: dodgerblue;
-  margin-left:10px;
+  margin-left:2px;
   color: white;
   transition: .5s;
 }

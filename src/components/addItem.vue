@@ -87,10 +87,14 @@ export default {
   #datePicker {
     grid-column: controls;
     grid-row:auto;
-    font-size: large;
+    font-size: 2.5vw;
+    font-weight: bold;
     text-align: center;
     border: solid 1px rgb(169, 169, 169);
     border-radius: 4px;
+  }
+  #datePicker::-webkit-inner-spin-button, #datePicker::-webkit-clear-button {
+    display: none;
   }
   .add-btn {
     border: solid 1px transparent;
