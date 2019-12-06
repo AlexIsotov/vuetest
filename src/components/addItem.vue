@@ -4,7 +4,7 @@
   <h3>If you don't want to forget the task write it here</h3>
   <div class="taskarea">
     <div class="taskarea-main">
-      <input type="text" v-model="message" placeholder="Enter your planned task" class="text-input" autofocus/>
+      <input type="text" v-model="message" @change="typing" placeholder="Enter your planned task" class="text-input" v-bind:class="{textInputValid:!validation}"autofocus/>
       <textarea type="text" :placeholder="title" v-model="comment" rows="8" class="text-area" ></textarea>
     </div>
     <div class="taskarea-shrink">
@@ -26,7 +26,8 @@ export default {
       message:'',
       date: today,
       minDate: today,
-      comment:''
+      comment:'',
+      validation: true
     }
   },
   methods: {
@@ -39,9 +40,14 @@ export default {
         this.message =''
         this.comment=''
         this.date = today
+        }
+      else {
+        this.validation = false
       }
+    },
+    typing() {
+      if(this.validation === false) this.validation=true
     }
-
   }
 }
 </script>
@@ -84,10 +90,15 @@ export default {
     border-radius: 4px;
     grid-area: task;
   }
+  .textInputValid {
+    border: solid 1px #ff6347;
+    animation: invalid .5s 4 ease-in-out alternate;
+  }
   #datePicker {
     grid-column: controls;
     grid-row:auto;
     font-size: 2.5vw;
+    color: #696969;;
     font-weight: bold;
     text-align: center;
     border: solid 1px rgb(169, 169, 169);
@@ -118,6 +129,9 @@ export default {
   @keyframes texted {
     0% {left: 5px;}
     100% {left: -5px;}
-
+  }
+  @keyframes invalid {
+    0% {transform: scaleX(0.97) }
+    100% {transform: scaleX(1);}
   }
 </style>
