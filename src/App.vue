@@ -4,14 +4,27 @@
         <img alt="Vue logo" src="./assets/logo.png" class="main-img">
     </div>
     <AddItem title='Create comment and don`t forget to choose date!' @add-task='addTask' />
-    <ItemList :tasks="tasks" @del-item="delItem" @complete-item="completeItem"/>
+    <div class="tabs">
+      <label for:id="doneTab" class="tabLabel">
+        <input id="doneTab" type="radio" :value="true" v-model="filter" @click="test" class="tabInput"/>
+        <span>Done</span>
+      </label>
+      <label for:id="inProgressTab" class="tabLabel">
+        <input id="inProgressTab" type="radio"  :value="false" v-model="filter" @click="test" class="tabInput"/>
+        <span> In progress </span>
+      </label>
+    </div>
+    <ItemList :tasks="tasks" :filter="filter" @del-item="delItem" @complete-item="completeItem"/>
   </div>
 </template>
 
 <script>
 import AddItem from '@/components/addItem'
 import ItemList from '@/components/itemList'
-
+const data=[{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false, comment:''},
+        { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:true, comment:''},
+        { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false, comment:'No comments'}
+       ]
 export default {
   name: 'app',
   components: {
@@ -19,14 +32,15 @@ export default {
   },
   data(){
     return {
-    tasks: [{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false, comment:''},
-            { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:true, comment:''},
-            { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false, comment:'No comments'}
-           ],
-    addItem: false
+      tasks: data ,
+      addItem: false,
+      filter: false
     }
   },
   methods: {
+    test(e) {
+      console.log(e.target.value)
+    },
     addTask(task){
         if(!this.checkArr(this.tasks, task.task)){
           this.tasks.unshift(task)
@@ -42,10 +56,7 @@ export default {
       for(let i=0;i<this.tasks.length;i++) {
         if(this.tasks[i].id.toString()==idItem) {
           if(this.tasks[i].done!==true) {
-          //let accept = confirm("Do you agree to close this task?")
-          //  if(accept) {
               this.tasks[i].done = true
-          //  }
           }
           else {this.tasks[i].done = false}
         }
@@ -86,5 +97,9 @@ html {
 }
 .main-img:hover {
   transform: rotate(180deg) scale(0.5, 0.5);
+}
+.tabs {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

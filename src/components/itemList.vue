@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition-group name="list" tag="div">
-      <div v-for="(task, id) in tasks" v-bind:key="task.id" class="list-item">
+      <div v-for="(task, id) in tasks" v-bind:key="task.id" class="list-item" v-if="task.done===filter">
         <Item
         :task="task.task"
         :id="task.id"
@@ -24,7 +24,8 @@ export default {
     Item
   },
   props: {
-    tasks: Array
+    tasks: Array,
+    filter: Boolean
   },
   data(){
     return{
