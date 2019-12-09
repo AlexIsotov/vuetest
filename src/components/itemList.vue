@@ -52,11 +52,11 @@ export default {
 }
 .list-enter {
   opacity: 0;
-  transform: translateY(200px);
+  transform: translateY(-200px);
 }
 .list-leave-to{
   opacity: 0;
-  transform: translateY(-200px);
+  transform: translateY(200px);
 }
 .del-button {
   color:#fff;

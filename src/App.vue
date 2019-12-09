@@ -4,17 +4,25 @@
         <img alt="Vue logo" src="./assets/logo.png" class="main-img">
     </div>
     <AddItem title='Create comment and don`t forget to choose date!' @add-task='addTask' />
-    <div class="tabs">
-      <label for:id="doneTab" class="tabLabel">
-        <input id="doneTab" type="radio" :value="true" v-model="filter" @click="test" class="tabInput"/>
-        <span>Done</span>
-      </label>
-      <label for:id="inProgressTab" class="tabLabel">
-        <input id="inProgressTab" type="radio"  :value="false" v-model="filter" @click="test" class="tabInput"/>
-        <span> In progress </span>
-      </label>
+    <div>
+      <div class="tabs">
+        <div class="tab" :class="{checked:this.filter}">
+          <label class="tabLabel" >
+            <input id="doneTab" name="a" type="radio" :value="true" v-model="filter" />
+            <span>Done</span>
+          </label>
+        </div>
+        <div class="tab" :class="{checked:!this.filter}">
+          <label class="tabLabel" >
+            <input id="inProgressTab" name="a" type="radio" :value="false" v-model="filter"/>
+            <span> Required </span>
+          </label>
+        </div>
+      </div>
+      <div class="content">
+        <ItemList :tasks="tasks" :filter="filter" @del-item="delItem" @complete-item="completeItem"/>
+      </div>
     </div>
-    <ItemList :tasks="tasks" :filter="filter" @del-item="delItem" @complete-item="completeItem"/>
   </div>
 </template>
 
@@ -34,13 +42,12 @@ export default {
     return {
       tasks: data ,
       addItem: false,
-      filter: false
+      filter: false,
+      checkedDone:false,
+      checkedProg:false,
     }
   },
   methods: {
-    test(e) {
-      console.log(e.target.value)
-    },
     addTask(task){
         if(!this.checkArr(this.tasks, task.task)){
           this.tasks.unshift(task)
@@ -70,7 +77,7 @@ export default {
 </script>
 
 <style>
-html {
+body {
   background: linear-gradient(to top left, khaki, lightyellow);
 }
 #app {
@@ -79,7 +86,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding-top: 60px;
+  padding-top: 20px;
 }
 .logo {
   display: flex;
@@ -99,7 +106,37 @@ html {
   transform: rotate(180deg) scale(0.5, 0.5);
 }
 .tabs {
-  display: flex;
-  justify-content: flex-end;
+  display:flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+  margin-bottom: -1px;
 }
+.tab {
+  background: lightyellow;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position:relative;
+}
+.tabLabel {
+  cursor: pointer;
+}
+.tab [type=radio] {
+  display: none;
+}
+.content {
+  padding: 5px;
+  background: #ffe485;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  border-top-left-radius:0;
+  z-index:2;
+}
+.checked {
+  background: #ffe485;
+  border-bottom: 1px solid #ffe485;
+  z-index:1;
+}
+
 </style>
