@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition-group name="list" tag="div">
-      <div v-for="(task, id) in tasks" v-bind:key="task.id" class="list-item" v-if="task.done===filter">
+      <div v-for="(task, id) in tasks" v-bind:key="task.id" v-if="task.done===filter" class="list-item">
         <Item
         :task="task.task"
         :id="task.id"
@@ -10,7 +10,8 @@
         :done="task.done"
         :comment="task.comment"
         @del-item="$emit('del-item', task.id)"
-        @complete-task="$emit('complete-item', task.id)"/>
+        @complete-task="$emit('complete-item', task.id)"
+        />
       </div>
     </transition-group>
   </div>
@@ -40,23 +41,15 @@ export default {
 
 <style>
 .list-item {
-  background: #ffffe0;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  padding: .8rem 2rem;
-  transition: all .5s;
-  margin-top: 5px;
-}
-.list-item:hover {
-  background: white;
+  transition: all .3s;
 }
 .list-enter {
   opacity: 0;
-  transform: translateY(-200px);
+  transform: translateY(-100px);
 }
 .list-leave-to{
   opacity: 0;
-  transform: translateY(200px);
+  transform: translateY(100px);
 }
 .del-button {
   color:#fff;

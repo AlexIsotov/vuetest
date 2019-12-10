@@ -1,14 +1,14 @@
 <template>
-  <div @mouseleave="showButton=false" @mouseover="showButton=true" id="taskContainer">
+  <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showButton=true" class="taskContainer">
     <div class="taskItem">
       <div class="check">
         <label class="container">
-          <input v-bind:id="id" type="checkbox" v-bind:checked="done" @change="completeTask" />
+          <input type="checkbox" v-bind:checked="done" @change="completeTask" />
           <span class="checkmark"></span>
         </label>
       </div>
       <div class="task">
-        <label v-bind:for="id" ><strong v-bind:class="{donetask:done}">{{task}}</strong></label>
+        <span><strong v-bind:class="{donetask:done}">{{task}}</strong></span>
         <transition name="slide-fade">
             <button v-if="showButton" @click="showMore" class="btn-show">?</button>
         </transition>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     task: String,
@@ -56,19 +57,27 @@ export default {
       this.line = "line-through"
       this.$emit('complete-task')
       if(this.done!==true) {this.show=false}
-    }
+    },
   }
 }
 </script>
 
 <style>
-#taskContainer {
+.taskContainer {
   display: grid;
   grid-template-areas:
   "taskItem"
   "more";
   grid-template-rows: 15% 1fr;
   grid-gap: 5px;
+  background: #ffffe0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: .8rem 2rem;
+  margin-top: 5px;
+}
+.taskContainer:hover {
+  background: white;
 }
 .taskItem {
   grid-area: taskItem;
@@ -80,7 +89,6 @@ export default {
 }
 .check {
   grid-area:check;
-
 }
 /*custom checkbox*/
 .container {
