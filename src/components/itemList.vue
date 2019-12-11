@@ -1,28 +1,32 @@
 <template>
   <div>
-    <transition-group name="list" tag="div">
-      <div v-for="(task, id) in tasks" v-bind:key="task.id" v-if="task.done===filter" class="list-item">
-        <Item
-        :task="task.task"
-        :id="task.id"
-        :date="task.date"
-        :dateTo="task.dateTo"
-        :done="task.done"
-        :comment="task.comment"
-        @del-item="$emit('del-item', task.id)"
-        @complete-task="$emit('complete-item', task.id)"
-        />
-      </div>
-    </transition-group>
+    <draggable v-model="tasksMutable" @end="save">
+      <transition-group name="list" tag="div">
+        <div v-for="(task, id) in tasks" v-bind:key="task.id" v-if="task.done===filter" class="list-item">
+          <Item
+          :task="task.task"
+          :id="task.id"
+          :date="task.date"
+          :dateTo="task.dateTo"
+          :done="task.done"
+          :comment="task.comment"
+          @del-item="$emit('del-item', task.id)"
+          @complete-task="$emit('complete-item', task.id)"
+          />
+        </div>
+      </transition-group>
+    </draggable>
   </div>
 </template>
 
 <script>
 import Item from './item'
+import draggable from 'vuedraggable'
 
 export default {
   components: {
-    Item
+    Item,
+    draggable,
   },
   props: {
     tasks: Array,
@@ -30,11 +34,13 @@ export default {
   },
   data(){
     return{
-
+      tasksMutable: this.tasks
       }
   },
   methods: {
-
+    save() {
+      this.$emit('save-order', this.tasksMutable)
+    },
   }
 }
 </script>

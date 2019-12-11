@@ -20,7 +20,8 @@
         </div>
       </div>
       <div class="content">
-        <ItemList :tasks="tasks" :filter="filter" @del-item="delItem" @complete-item="completeItem"/>
+        <ItemList :tasks="tasks" :filter="filter" @del-item="delItem"
+        @complete-item="completeItem" @save-order="saveOrder"/>
       </div>
     </div>
   </div>
@@ -43,8 +44,6 @@ export default {
       tasks: data ,
       addItem: false,
       filter: false,
-      checkedDone:false,
-      checkedProg:false,
     }
   },
   methods: {
@@ -72,6 +71,9 @@ export default {
     checkArr(arr,val) {
       return arr.some(arrVal=> val===arrVal.task)
     },
+    saveOrder(arr) {
+      this.tasks = arr
+    },
   }
 }
 </script>
@@ -86,7 +88,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .logo {
   display: flex;

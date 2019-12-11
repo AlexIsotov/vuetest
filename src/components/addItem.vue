@@ -55,7 +55,7 @@ export default {
 <style>
   .main-text {
     position: relative;
-    animation: texted 2s infinite ease alternate;
+    animation: texted 1s infinite linear alternate;
   }
   .taskarea {
     display: grid;
