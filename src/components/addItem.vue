@@ -1,7 +1,5 @@
 <template>
 <div>
-  <h1 class="main-text">Make your day better!</h1>
-  <h3>If you don't want to forget the task write it here</h3>
   <div class="taskarea">
     <div class="taskarea-main">
       <input type="text" v-model="message" @change="typing" placeholder="Enter your planned task" class="text-input" v-bind:class="{textInputValid:!validation}"autofocus/>
@@ -53,10 +51,7 @@ export default {
 </script>
 
 <style>
-  .main-text {
-    position: relative;
-    animation: texted 1s infinite linear alternate;
-  }
+
   .taskarea {
     display: grid;
     grid-template-areas:
@@ -125,10 +120,6 @@ export default {
   @keyframes stripes {
     0% {transform: skewX(2deg) skewY(-1deg);}
     100% {transform: skewX(-2deg) skewY(1deg);}
-  }
-  @keyframes texted {
-    0% {left: 5px;}
-    100% {left: -5px;}
   }
   @keyframes invalid {
     0% {transform: scaleX(0.97) }
