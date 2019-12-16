@@ -1,6 +1,6 @@
 <template>
   <div>
-    <draggable v-model="tasksMutable" @end="save">
+    <draggable v-model="tasksMutable" @end="save" @start="reload" delay="100">
       <transition-group name="list" tag="div">
         <div v-for="(task, id) in tasks" v-bind:key="task.id" v-if="task.done===filter" class="list-item">
           <Item
@@ -41,6 +41,9 @@ export default {
     save() {
       this.$emit('save-order', this.tasksMutable)
     },
+    reload() {
+      this.tasksMutable = this.tasks
+    }
   }
 }
 </script>
@@ -71,5 +74,8 @@ export default {
   border-color: currentColor;
   background: white;
   transform: rotate(360deg);
+}
+.sortable-chosen {
+  border:2px solid gray;
 }
 </style>

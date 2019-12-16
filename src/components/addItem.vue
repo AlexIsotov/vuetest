@@ -106,7 +106,7 @@ export default {
     border: solid 1px transparent;
     border-radius: 4px;
     color:#fffbe8;
-    padding: 0.5em 1em;
+    padding: 0.3em 0;
     background: #a397aa;
     grid-column: span 2;
   }

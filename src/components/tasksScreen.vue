@@ -93,6 +93,8 @@ export default {
 }
 .tabLabel {
   cursor: pointer;
+  font-weight: 600;
+  font-variant: small-caps;
 }
 .tab [type=radio] {
   display: none;

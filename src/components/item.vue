@@ -1,6 +1,6 @@
 <template>
   <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showButton=true" class="taskContainer">
-    <div class="tooltip"> <span class="tooltipText"> Drag'n'Drop elements to reorder them! </span> </div>
+    <div class="tooltip"> <span class="tooltipText"> Hold elements and drag to reorder them! </span> </div>
     <div class="taskItem">
       <div class="check">
         <label class="container">
@@ -75,7 +75,7 @@ export default {
   border: 2px solid #ccc;
   border-radius: 5px;
   padding: .8rem 2rem;
-  margin-top: 5px;
+  margin: 3px 0;
 }
 .taskContainer:hover {
   background: white;
@@ -215,7 +215,7 @@ export default {
   transition: opacity 0.3s;
 }
 .list-item:hover .tooltipText {
-  animation: tip 4s linear 2s;
+  animation: tip 3s linear 1s;
   visibility: visible;
 
 }
