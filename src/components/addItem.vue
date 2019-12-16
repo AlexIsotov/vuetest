@@ -58,13 +58,14 @@ export default {
     "taskArea dateArea";
     grid-template-columns: 1fr  25%;
     grid-gap: 5px;
+    margin-top: 5px;
   }
   .taskarea-shrink {
     grid-area: dateArea;
     display: grid;
     grid-template-columns: [controls] 1fr;
     grid-auto-flow:row;
-    grid-gap: 2px;
+    row-gap: 2px;
   }
   .taskarea-main {
     grid-area: taskArea;

@@ -215,7 +215,7 @@ export default {
   transition: opacity 0.3s;
 }
 .list-item:hover .tooltipText {
-  animation: tip 3s linear 1s;
+  animation: tip 3s linear .5s;
   visibility: visible;
 
 }
