@@ -54,7 +54,7 @@ body {
 .menuIcon {
   width: 16px;
   height: 4px;
-  background-color: black;
+  background-color: #2c3e50;
   margin: 2px 0;
   transition: all .5s;
 }

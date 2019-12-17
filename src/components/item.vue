@@ -1,6 +1,5 @@
 <template>
   <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showButton=true" class="taskContainer">
-    <div class="tooltip"> <span class="tooltipText"> Hold elements and drag to reorder them! </span> </div>
     <div class="taskItem">
       <div class="check">
         <label class="container">
@@ -193,34 +192,5 @@ export default {
 .donetask {
   text-decoration: line-through;
 }
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-.tooltip .tooltipText {
-  visibility:hidden;
-  background: #555;
-  color: #fff;
-  text-align: center;
-  padding: 5px 1px;
-  border-radius: 6px;
-  font-size:small;
-  position:absolute;
-  z-index: 1;
-  top: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity:0;
-}
-.list-item:hover .tooltipText {
-  animation: tip 2s linear .5s;
-  visibility: visible;
 
-}
-@keyframes tip {
-  0% {opacity: 0;}
-  30% {opacity: 1;}
-  95% {opacity: 0.9;}
-  100% {opacity: 0;}
-}
 </style>

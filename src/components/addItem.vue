@@ -10,6 +10,7 @@
       <button @click='onClick' class="add-btn">Add task!</button>
     </div>
   </div>
+  <div class="tooltip"> <span class="tooltipText" :class="{tooltipTextAnim:hint}">Hint: Hold elements and drag to reorder them! </span> </div>
 </div>
 </template>
 
@@ -25,7 +26,8 @@ export default {
       date: today,
       minDate: today,
       comment:'',
-      validation: true
+      validation: true,
+      hint: false
     }
   },
   methods: {
@@ -35,9 +37,10 @@ export default {
         messageFilter = messageFilter.charAt(0).toUpperCase() + messageFilter.slice(1)
         const task = {id:"id"+Math.floor(Math.random()*9999+1), task:messageFilter, date: new Date().toDateString(), dateTo:new Date(this.date).toDateString(), done: false, comment:this.comment}
         this.$emit('add-task', task)
-        this.message =''
-        this.comment=''
+        this.message = ''
+        this.comment = ''
         this.date = today
+        this.hint = true
         }
       else {
         this.validation = false
@@ -125,5 +128,35 @@ export default {
   @keyframes invalid {
     0% {transform: scaleX(0.97) }
     100% {transform: scaleX(1);}
+  }
+  .tooltip {
+    position: relative;
+  }
+  .tooltip .tooltipText {
+    visibility:hidden;
+    background: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+    font-size:small;
+    position:absolute;
+    z-index: 3;
+    top: 125%;
+    left: 50%;
+    margin-top: 15px;
+    margin-left:-100px;
+    opacity:0;
+  }
+  .tooltip .tooltipTextAnim {
+    animation: tip 4s linear .7s;
+    visibility: visible;
+
+  }
+  @keyframes tip {
+    0% {opacity: 0;}
+    30% {opacity: 1;}
+    95% {opacity: 0.9;}
+    100% {opacity: 0;}
   }
 </style>
