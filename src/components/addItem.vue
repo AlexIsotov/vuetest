@@ -150,13 +150,13 @@ export default {
   }
   .tooltip .tooltipTextAnim {
     animation: tip 4s linear .7s;
-    visibility: visible;
+
 
   }
   @keyframes tip {
-    0% {opacity: 0;}
+    0% {opacity: 0; visibility: visible;}
     30% {opacity: 1;}
     95% {opacity: 0.9;}
-    100% {opacity: 0;}
+    100% {opacity: 0; visibility:hidden}
   }
 </style>
