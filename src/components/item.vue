@@ -210,12 +210,10 @@ export default {
   top: 125%;
   left: 50%;
   margin-left: -60px;
-
   opacity:0;
-  transition: opacity 0.3s;
 }
 .list-item:hover .tooltipText {
-  animation: tip 3s linear .5s;
+  animation: tip 2s linear .5s;
   visibility: visible;
 
 }

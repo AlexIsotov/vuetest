@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <nav class="navbar">
-      <button @click="menu=!menu" class="menu">M</button>
+      <div @click="menu=!menu" class="menu">
+        <div class="menuIcon" :class="{menuIconAnimTop:menu}"></div>
+        <div class="menuIcon" :class="{menuIconAnimMid:menu}"></div>
+        <div class="menuIcon" :class="{menuIconAnimBot:menu}"></div>
+      </div>
       <div class="navHidden" v-if="menu">
         <router-link to="/" class="navlink">Home</router-link>
         <router-link to="/tasks" class="navlink">Dashboard</router-link>
@@ -18,7 +22,7 @@ export default {
   },
   data(){
     return {
-      menu: false
+      menu: false,
     }
   },
   methods: {
@@ -42,14 +46,28 @@ body {
   position: relative;
   display: inline-block;
   padding: 12px 14px;
-  font-weight: 800;
-  white-space: nowrap;
   cursor: pointer;
   border: 1px solid rgba(27,31,35,.2);
-  border-radius: .25em;
-  color: #5C5D7D;
+  border-radius: .3em;
   background-color: #fff;
-  text-decoration: none;
+}
+.menuIcon {
+  width: 16px;
+  height: 4px;
+  background-color: black;
+  margin: 2px 0;
+  transition: all .5s;
+}
+.menuIconAnimTop {
+  opacity:0.9;
+  transform: scaleX(1.1);
+}
+.menuIconAnimMid {
+  opacity:0;
+}
+.menuIconAnimBot {
+  transform: rotate(90deg) scaleX(1.3);
+  opacity:0.9;
 }
 .navbar {
   display: flex;
