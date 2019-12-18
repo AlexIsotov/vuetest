@@ -10,6 +10,7 @@
           :dateTo="task.dateTo"
           :done="task.done"
           :comment="task.comment"
+          :showB="show"
           @del-item="$emit('del-item', task.id)"
           @complete-task="$emit('complete-item', task.id)"
           />
@@ -34,15 +35,18 @@ export default {
   },
   data(){
     return{
-      tasksMutable: this.tasks
+      tasksMutable: this.tasks,
+      show: true
       }
   },
   methods: {
     save() {
       this.$emit('save-order', this.tasksMutable)
+      this.show = true
     },
     reload() {
       this.tasksMutable = this.tasks
+      this.show = false
     }
   }
 }

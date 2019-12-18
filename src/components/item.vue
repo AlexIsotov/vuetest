@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showButton=true" class="taskContainer">
+  <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showB===true?showButton=true:showButton=false" class="taskContainer">
     <div class="taskItem">
       <div class="check">
         <label class="container">
@@ -40,7 +40,8 @@ export default {
     date: String,
     dateTo: String,
     done: Boolean,
-    comment: String
+    comment: String,
+    showB: Boolean
   },
   data(){
     return{
@@ -140,10 +141,12 @@ export default {
     grid-area:task;
     justify-self: start;
     font-size: large;
+    align-self:start;
 }
 .delBtn {
   grid-area:del-btn;
-  align-self:center;
+  align-self: start;
+  justify-self: end;
 }
 #more {
   grid-area:more;

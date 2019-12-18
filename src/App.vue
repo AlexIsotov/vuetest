@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar">
-      <div @click="menu=!menu" class="menu">
+      <div @click="menu=!menu" class="menu" :class="{menuAnim:menu}">
         <div class="menuIcon" :class="{menuIconAnimTop:menu}"></div>
         <div class="menuIcon" :class="{menuIconAnimMid:menu}"></div>
         <div class="menuIcon" :class="{menuIconAnimBot:menu}"></div>
@@ -45,11 +45,16 @@ body {
 .menu {
   position: relative;
   display: inline-block;
-  padding: 12px 14px;
+  padding: 10px 14px;
   cursor: pointer;
-  border: 1px solid rgba(27,31,35,.2);
+  border: 1.2px solid rgba(27,31,35,.2);
   border-radius: .3em;
   background-color: #fff;
+  transition: all .5s;
+}
+.menuAnim {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .menuIcon {
   width: 16px;
@@ -66,7 +71,7 @@ body {
   opacity:0;
 }
 .menuIconAnimBot {
-  transform: rotate(90deg) scaleX(1.3);
+  transform: rotate(90deg) translateX(-2px);
   opacity:0.9;
 }
 .navbar {
