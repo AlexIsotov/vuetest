@@ -2,7 +2,7 @@
   <div class="mainScreen">
     <h1 class="mainText">Make your day better!</h1>
     <div class="logo">
-        <img alt="Vue logo" src="../assets/logo.png" :class="{mainImgAnim:anim}">
+        <img alt="Vue logo" src="../assets/logo.png">
     </div>
     <h3 class="secText" :class="{secTextAnim:anim}">If you don't want to forget the task write it here</h3>
     <div class="choice" :class="{choiceAnim:anim}">
@@ -69,9 +69,6 @@ export default {
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
-}
-.mainImgAnim {
-  animation: image 2s ease ;
 }
 .mainText {
   position: relative;

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Tasks from './components/tasksScreen.vue'
 import MainSreen from './components/mainScreen.vue'
+import InfoScreen from './components/infoScreen.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -16,6 +17,10 @@ const router = new VueRouter({
     {
       path: '/tasks',
       component: Tasks
+    },
+    {
+      path: '/info',
+      component: InfoScreen
     },
   ]
 })

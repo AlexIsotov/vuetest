@@ -9,6 +9,7 @@
       <div class="navHidden" v-if="menu">
         <router-link to="/" class="navlink">Home</router-link>
         <router-link to="/tasks" class="navlink">Dashboard</router-link>
+        <router-link to="/info" class="navlink">About</router-link>
       </div>
     </nav>
     <router-view></router-view>
