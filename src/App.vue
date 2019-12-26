@@ -88,6 +88,10 @@ body {
   background: #b7a5d1;
   padding: 12px 0;
 }
+.navHidden:last-child {
+  border-top-right-radius: .3em;
+  border-bottom-right-radius: .3em;
+}
 .navlink {
   text-decoration: none;
   padding: 12px 14px;

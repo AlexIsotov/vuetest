@@ -51,7 +51,7 @@ export default {
 }
 .adv {
   margin: 0 6px;
-  border: 1px solid black;
+  border: 5px double #2c3e50;
   border-radius: 10px;
   background: white;
   padding: 5px 5px;
