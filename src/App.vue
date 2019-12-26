@@ -6,11 +6,13 @@
         <div class="menuIcon" :class="{menuIconAnimMid:menu}"></div>
         <div class="menuIcon" :class="{menuIconAnimBot:menu}"></div>
       </div>
-      <div class="navHidden" v-if="menu">
-        <router-link to="/" class="navlink">Home</router-link>
-        <router-link to="/tasks" class="navlink">Dashboard</router-link>
-        <router-link to="/info" class="navlink">About</router-link>
-      </div>
+      <transition name="navigation">
+        <div class="navHidden" v-if="menu">
+          <router-link to="/" class="navlink">Home</router-link>
+          <router-link to="/tasks" class="navlink">Dashboard</router-link>
+          <router-link to="/info" class="navlink">About</router-link>
+        </div>
+      </transition>
     </nav>
     <router-view></router-view>
   </div>
@@ -95,5 +97,17 @@ body {
 }
 .router-link-exact-active {
   background: #dae988;
+}
+.navigation-active {
+  transition: all .6s ease;
+}
+.navigation-leave-active {
+  transition: all .6s ease;
+}
+.navigation-enter {
+  transform: translateX(-10px)
+}
+.navigation-leave-to {
+  opacity: 0;
 }
 </style>
