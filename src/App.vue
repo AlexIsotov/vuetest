@@ -36,7 +36,7 @@ export default {
 <style>
 body {
   background: linear-gradient(180deg, khaki, lightyellow);
-    height: 95vh;
+  height: 95vh;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

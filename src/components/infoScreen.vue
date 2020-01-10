@@ -17,7 +17,7 @@
         <p>Check the box when done!</p>
       </div>
     </div>
-    <h3><router-link to="/tasks"> Enjoy!</router-link> </h3>
+    <h3 class="foot"><router-link to="/tasks"> Enjoy!</router-link> </h3>
   </div>
 </template>
 
@@ -71,4 +71,12 @@ export default {
   0%{opacity:0;}
   100%{opacity:1; transform: rotate(360deg);}
 }
+.foot {
+  text-decoration: none;
+  transition: all .2s ease ;
+}
+.foot:hover {
+  transform: scaleY(1.1);
+}
+
 </style>
