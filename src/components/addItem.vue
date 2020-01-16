@@ -6,7 +6,11 @@
       <textarea type="text" :placeholder="title" v-model="comment" rows="8" class="text-area" ></textarea>
     </div>
     <div class="taskarea-shrink">
-      <input type="date" v-model="date" v-bind:min="minDate" id="datePicker"/>
+      <input type="date" v-model="date" v-bind:min="minDate" id="datePicker"/> <br/>
+      <label>
+        <input type="checkbox" v-model="flash" />
+        <span>ASAP</span>
+      </label>
       <button @click='onClick' class="add-btn">Add task!</button>
     </div>
   </div>
@@ -27,7 +31,8 @@ export default {
       minDate: today,
       comment:'',
       validation: true,
-      hint: false
+      hint: false,
+      flash: false
     }
   },
   methods: {
@@ -35,12 +40,13 @@ export default {
       if(this.message.trim()){
         let messageFilter = this.message.toString()
         messageFilter = messageFilter.charAt(0).toUpperCase() + messageFilter.slice(1)
-        const task = {id:"id"+Math.floor(Math.random()*9999+1), task:messageFilter, date: new Date().toDateString(), dateTo:new Date(this.date).toDateString(), done: false, comment:this.comment}
+        const task = {id:"id"+Math.floor(Math.random()*9999+1), task:messageFilter, date: new Date().toDateString(), dateTo:new Date(this.date).toDateString(), done: false, comment:this.comment, flash: this.flash}
         this.$emit('add-task', task)
         this.message = ''
         this.comment = ''
         this.date = today
         this.hint = true
+        this.flash = false
         }
       else {
         this.validation = false

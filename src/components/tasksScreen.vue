@@ -28,9 +28,9 @@
 import AddItem from '@/components/addItem'
 import ItemList from '@/components/itemList'
 
-const data=[{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false, comment:''},
-        { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:true, comment:''},
-        { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false, comment:'No comments'}
+const data=[{ id:'1', task:'Learn Vue', date:'Always', dateTo:'Always',done:false, comment:'', flash: true},
+        { id:'2', task:'Learn React', date:'Always', dateTo:'Always',done:true, comment:'', flash: false},
+        { id:'3', task:'Learn JS', date:'Always', dateTo:'Always',done:false, comment:'No comments', flash: true}
        ]
 export default {
   name: 'tasks',

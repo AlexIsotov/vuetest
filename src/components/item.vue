@@ -9,6 +9,7 @@
       </div>
       <div class="task">
         <span><strong v-bind:class="{donetask:done}">{{task}}</strong></span>
+        <img v-if="flash" src="../assets/light.png" alt="light" width="16" height="16"/>
         <transition name="slide-fade">
             <button v-if="showButton" @click="showMore" class="btn-show">?</button>
         </transition>
@@ -41,7 +42,8 @@ export default {
     dateTo: String,
     done: Boolean,
     comment: String,
-    showB: Boolean
+    showB: Boolean,
+    flash: Boolean
   },
   data(){
     return{

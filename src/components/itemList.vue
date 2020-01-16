@@ -11,6 +11,7 @@
           :done="task.done"
           :comment="task.comment"
           :showB="show"
+          :flash="task.flash"
           @del-item="$emit('del-item', task.id)"
           @complete-task="$emit('complete-item', task.id)"
           />
