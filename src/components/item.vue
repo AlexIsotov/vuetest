@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showB===true?showButton=true:showButton=false" class="taskContainer">
+  <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showB===true?showButton=true:showButton=false" class="taskContainer" v-bind:class="{taskContainerImportant:flash}">
     <div class="taskItem">
       <div class="check">
         <label class="container">
@@ -81,6 +81,9 @@ export default {
 }
 .taskContainer:hover {
   background: white;
+}
+.taskContainerImportant {
+  background: #f5dddf;
 }
 .taskItem {
   grid-area: taskItem;

@@ -7,9 +7,9 @@
     </div>
     <div class="taskarea-shrink">
       <input type="date" v-model="date" v-bind:min="minDate" id="datePicker"/> <br/>
-      <label>
+      <label class="flashContainer">
         <input type="checkbox" v-model="flash" />
-        <span>ASAP</span>
+        <span class="flashCheck"><img src="../assets/light.png" alt="light" width="22" height="22"/></span>
       </label>
       <button @click='onClick' class="add-btn">Add task!</button>
     </div>
@@ -165,4 +165,44 @@ export default {
     95% {opacity: 0.9;}
     100% {opacity: 0; visibility:hidden}
   }
+  /*custom checkbox*/
+  .flashContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    user-select:none;
+  }
+  .flashContainer input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height:0;
+    width:0;
+  }
+  .flashCheck {
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 25px;
+    width: 25px;
+    border-radius: 3px;
+    background-color: #ccc;
+  }
+  .flashCheck:hover {
+    background-color: peru;
+  }
+  .flashContainer input:checked ~ .flashCheck {
+    background-color: crimson;
+  }
+  .flashCheck:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .flashContainer input:checked ~ .flashCheck:after {
+    display: block;
+  }
+
+  /*-------*/
 </style>
