@@ -1,6 +1,8 @@
 <template>
   <div>
-    <AddItem title='Create comment and don`t forget to choose date!' @add-task='addTask' />
+    <modal name="addItem" height="auto"  adaptive>
+      <AddItem title='Create comment and don`t forget to choose date!' @add-task='addTask' />
+    </modal>
     <div>
       <div class="tabs">
         <div class="tab" :class="{checked:this.filter}">
@@ -21,6 +23,7 @@
         @complete-item="completeItem" @save-order="saveOrder"/>
       </div>
     </div>
+    <button @click='modalShow' class="modalBtn">Add!</button>
   </div>
 </template>
 
@@ -72,6 +75,9 @@ export default {
     saveOrder(arr) {
       this.tasks = arr
     },
+    modalShow() {
+      this.$modal.show('addItem')
+    }
   }
 }
 </script>
@@ -112,5 +118,18 @@ export default {
   border-bottom: 1px solid #ffe485;
   z-index:1;
 }
-
+.modalBtn {
+  margin-top: 5px;
+  border: solid 1px transparent;
+  border-radius: 35%;
+  color:#fffbe8;
+  padding: 0.9em;
+  background: #a397aa;
+}
+.modalBtn:hover {
+  color: #fff;
+  outline: none;
+  border-color: currentColor;
+  background: #ccc;
+}
 </style>

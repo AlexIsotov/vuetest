@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="modal">
   <div class="taskarea">
     <div class="taskarea-main">
       <input type="text" v-model="message" @change="typing" placeholder="Enter your planned task" class="text-input" v-bind:class="{textInputValid:!validation}"autofocus/>
@@ -47,6 +47,7 @@ export default {
         this.date = today
         this.hint = true
         this.flash = false
+        this.$modal.hide('addItem')
         }
       else {
         this.validation = false
@@ -60,7 +61,9 @@ export default {
 </script>
 
 <style>
-
+  .modal {
+    padding: 0.5em;
+  }
   .taskarea {
     display: grid;
     grid-template-areas:
@@ -102,12 +105,12 @@ export default {
   #datePicker {
     grid-column: controls;
     grid-row:auto;
-    font-size: 2.5vw;
     color: #696969;;
     font-weight: bold;
     text-align: center;
     border: solid 1px rgb(169, 169, 169);
     border-radius: 4px;
+    width: auto;
   }
   #datePicker::-webkit-inner-spin-button, #datePicker::-webkit-clear-button {
     display: none;
