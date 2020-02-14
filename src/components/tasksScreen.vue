@@ -91,7 +91,7 @@ export default {
 }
 .tab {
   background: lightyellow;
-  padding: 15px;
+  padding: 15px 0;
   border: 1px solid #ccc;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -100,6 +100,7 @@ export default {
 .tabLabel {
   cursor: pointer;
   font-weight: 600;
+  padding: 15px;
   font-variant: small-caps;
 }
 .tab [type=radio] {
@@ -121,7 +122,7 @@ export default {
 .modalBtn {
   margin-top: 5px;
   border: solid 1px transparent;
-  border-radius: 35%;
+  border-radius: 50%;
   color:#fffbe8;
   padding: 0.9em;
   background: #a397aa;

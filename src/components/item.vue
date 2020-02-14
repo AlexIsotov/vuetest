@@ -25,7 +25,7 @@
           <p>Until:{{dateTo}}</p>
         </div>
         <div class="comment">
-          <p>Comment: {{comment}}</p>
+          <p><strong>Comment:</strong> {{comment}}</p>
         </div>
       </div>
     </transition>
@@ -72,11 +72,11 @@ export default {
   "taskItem"
   "more";
   grid-template-rows: 15% 1fr;
-  grid-gap: 5px;
+  grid-gap: 3px;
   background: #ffffe0;
   border: 2px solid #ccc;
   border-radius: 5px;
-  padding: .8rem 2rem;
+  padding: 0.8rem 2rem;
   margin: 3px 0;
 }
 .taskContainer:hover {
@@ -159,14 +159,16 @@ export default {
   grid-template-areas:
   "date"
   "comment";
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
-  grid-gap: 1px;
+  grid-gap: 3px;
+  border: 1px solid #ccc;
 }
 .date {
   grid-area: date;
   justify-self: end;
   margin-right:2px;
+  font-size: 13px;
 }
 .comment {
   grid-area: comment;
