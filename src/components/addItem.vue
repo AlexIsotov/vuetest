@@ -187,6 +187,7 @@ export default {
     display:flex;
     align-items: center;
     justify-content: flex-end;
+    padding: 2px;
     height: 25px;
     width: 25px;
     border-radius: 3px;

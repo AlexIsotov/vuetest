@@ -1,5 +1,20 @@
 <template>
   <div v-bind:id="id" @mouseleave="showButton=false" @mouseover="showB===true?showButton=true:showButton=false" class="taskContainer" v-bind:class="{taskContainerImportant:flash}">
+    <div>
+      <modal :name="id" height="auto"  adaptive>
+        <div class="delModal">
+          <p><strong>Delete?</strong></p>
+          <div class="delModalFooter">
+            <div class="btn">
+              <button @click="delYes(id)" class="delYes">Yes</button>
+            </div>
+            <div class="btn">
+              <button @click="delCancel" class="delCancel">No!</button>
+            </div>
+          </div>
+        </div>
+      </modal>
+    </div>
     <div class="taskItem">
       <div class="check">
         <label class="container">
@@ -15,7 +30,7 @@
         </transition>
       </div>
       <div class="delBtn">
-        <button @click="$emit('del-item', id)" class="del-button">&times;</button>
+        <button @click="modalShow" class="del-button">&times;</button>
       </div>
     </div>
     <transition name="fade" >
@@ -61,6 +76,16 @@ export default {
       this.$emit('complete-task')
       if(this.done!==true) {this.show=false}
     },
+    modalShow() {
+      this.$modal.show(this.id.toString())
+    },
+    delCancel() {
+      this.$modal.hide(this.id.toString())
+    },
+    delYes(id) {
+      this.$emit('del-item', this.id)
+      this.delCancel()
+    }
   }
 }
 </script>
@@ -202,5 +227,21 @@ export default {
 .donetask {
   text-decoration: line-through;
 }
-
+.delModal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.4em 0;
+}
+.delModalFooter{
+  display: flex;
+}
+.delYes {
+  color: crimson;
+  padding:0.5em;
+  margin-right: 3em;
+}
+.delCancel {
+  padding:0.5em;
+}
 </style>
