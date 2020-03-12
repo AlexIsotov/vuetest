@@ -1,6 +1,6 @@
 <template>
 <div class="modal">
-  <div class="taskarea">
+  <form class="taskarea" @submit='onClick'>
     <div class="taskarea-main">
       <input type="text" v-model="message" @change="typing" placeholder="Enter your planned task" class="text-input" v-bind:class="{textInputValid:!validation}"autofocus/>
       <textarea type="text" :placeholder="title" v-model="comment" rows="8" class="text-area" ></textarea>
@@ -11,9 +11,9 @@
         <input type="checkbox" v-model="flash" />
         <span class="flashCheck"><img src="../assets/light.png" alt="light" width="22" height="22"/></span>
       </label>
-      <button @click='onClick' class="add-btn">Add task!</button>
+      <button class="add-btn">Add task!</button>
     </div>
-  </div>
+  </form>
   <div class="tooltip"> <span class="tooltipText" :class="{tooltipTextAnim:hint}">Hint: Hold elements and drag to reorder them! </span> </div>
 </div>
 </template>
@@ -36,7 +36,8 @@ export default {
     }
   },
   methods: {
-    onClick(){
+    onClick(e){
+      e.preventDefault()
       if(this.message.trim()){
         let messageFilter = this.message.toString()
         messageFilter = messageFilter.charAt(0).toUpperCase() + messageFilter.slice(1)
