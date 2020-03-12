@@ -23,7 +23,7 @@
         @complete-item="completeItem" @save-order="saveOrder"/>
       </div>
     </div>
-    <button @click='modalShow' class="modalBtn">Add!</button>
+    <button @click='modalShow' class="modalBtn" title="Add new task!">+</button>
   </div>
 </template>
 
@@ -122,10 +122,11 @@ export default {
 .modalBtn {
   margin-top: 5px;
   border: solid 1px transparent;
-  border-radius: 50%;
+  border-radius: 40%;
   color:#fffbe8;
-  padding: 0.9em;
+  padding: 0.5em 0.8em;
   background: #a397aa;
+  font-size: 20px;
 }
 .modalBtn:hover {
   color: #fff;

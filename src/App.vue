@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar">
-      <div @click="menu=!menu" class="menu" :class="{menuAnim:menu}">
+      <div @click="menu=!menu" class="menu" :class="{menuAnim:menu}" title="Menu">
         <div class="menuIcon" :class="{menuIconAnimTop:menu}"></div>
         <div class="menuIcon" :class="{menuIconAnimMid:menu}"></div>
         <div class="menuIcon" :class="{menuIconAnimBot:menu}"></div>

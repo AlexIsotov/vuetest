@@ -19,28 +19,28 @@
       <div class="check">
         <label class="container">
           <input type="checkbox" v-bind:checked="done" @change="completeTask" />
-          <span class="checkmark"></span>
+          <span class="checkmark"  title="Done!"></span>
         </label>
       </div>
       <div class="task">
         <span><strong v-bind:class="{donetask:done}">{{task}}</strong></span>
         <img v-if="flash" src="../assets/light.png" alt="light" width="16" height="16"/>
         <transition name="slide-fade">
-            <button v-if="showButton" @click="showMore" class="btn-show">?</button>
+            <button v-if="showButton" @click="showMore" class="btn-show"  title="Show more!">?</button>
         </transition>
       </div>
       <div class="delBtn">
-        <button @click="modalShow" class="del-button">&times;</button>
+        <button @click="modalShow" class="del-button" title="Delete task!">&times;</button>
       </div>
     </div>
     <transition name="fade" >
       <div v-if="show" id="more">
         <div class="date">
-          <p>Date:{{date}}</p>
+          <p>Created:{{date}}</p>
           <p>Until:{{dateTo}}</p>
         </div>
         <div class="comment">
-          <p><strong>Comment:</strong> {{comment}}</p>
+          <p><strong>Comment:</strong> {{comment? comment: "No comments"}}</p>
         </div>
       </div>
     </transition>
